@@ -1,0 +1,6 @@
+http_port: 8000
+https_port: 4443
+html_welcome_msg: "Hello world!"
+
+dns_server_primary: 8.8.8.8
+dns_server_secondary: 8.8.4.4
