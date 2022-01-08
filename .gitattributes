@@ -1,2 +1,2 @@
-*.j2 linguist-detectable=false
+*.j2 linguist-detectable=true
 *.yml linguist-detectable=true
