@@ -1,0 +1,5 @@
+- name: ensure docker is installed
+  apt:
+    name: docker.io
+    state: latest
+    update_cache: yes

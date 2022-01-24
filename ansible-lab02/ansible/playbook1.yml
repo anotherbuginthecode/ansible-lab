@@ -1,0 +1,23 @@
+- hosts: localhost
+  become: yes
+  become_user: vagrant
+  tasks:
+    - name: Generating ssh key
+      command: "ssh-keygen -b 4096 -t rsa -f ~/.ssh/id_rsa"
+    - name: Copy ssh pub_key into all servers
+      command: "ssh-copy-id -i ~/.ssh/id_rsa -f {{ item }}"
+      with_items: "{{ groups['webstack'] }}"
+  tags: ssh
+
+- hosts: nodes
+  become: yes
+  roles:
+    - common
+    - docker
+    - docker-compose
+
+- hosts: proxy
+  become: yes
+  roles:
+  - common
+  - nginx

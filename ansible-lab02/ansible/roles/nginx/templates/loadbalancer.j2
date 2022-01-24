@@ -1,0 +1,13 @@
+upstream webserver{
+    {% for host in groups['nodes'] %}
+        server {{ hostvars[host]['ansible_facts']['nodename']}}:5000;
+    {% endfor %}
+}
+
+server{
+    listen 80;
+    location / {    
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://webserver;
+    }
+}
